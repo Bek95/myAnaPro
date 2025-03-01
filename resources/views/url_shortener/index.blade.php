@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>liste des urls</h1>
+        <h1>liste des shortcut des urls</h1>
 
        <div>
            <a href="{{ route('url_shortener.create') }}"><button type="button" class="btn btn-primary">raccourcir une url</button></a>

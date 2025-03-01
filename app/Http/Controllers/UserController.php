@@ -33,7 +33,6 @@ class UserController extends Controller
 
     }
 
-
     private function arePasswordsMatching(string $password, string $confirmPassword): bool
     {
         return $password === $confirmPassword;

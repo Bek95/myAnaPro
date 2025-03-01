@@ -42,3 +42,21 @@
     font-weight: 700;
     box-shadow: 2px 2px 2px 0 rgba(0,0,0, 0.4);
 }
+
+.brands {
+    background-color: #edf2f7;
+    padding: 30px;
+    text-align: center;
+}
+
+.picture-brands {
+    height: 60px;
+    margin: 15px;
+}
+
+.title-brands {
+    margin: 0;
+    color: #ee6623;
+    text-transform: uppercase;
+    padding-bottom: 30px;
+}
