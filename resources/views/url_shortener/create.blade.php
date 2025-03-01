@@ -1,17 +1,21 @@
 @extends('master.layout')
 
 @section('content')
-    <h1>Raccourcir une Url</h1>
-
-
-    <div class="container">
-        <form action method="post">
-            @csrf
-            <div class="mb-3">
-                <label for="url" class="form-label">Saisir l'url à raccourcir</label>
-                <input type="text" class="form-control" id="url" name="url">
+    <section class="section-url-shortcut">
+        <div class="form-shortercut">
+            <div style="margin-top: 10%;">
+                <h1 class="h1-white">une url longue ? raccourcissez-la</h1>
+                <h2 class="h2-white">Largement meilleurs et plus court que les autres.</h2>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+            <div class="d-flex justify-content-center">
+                <form class="form-inline" action="" method="post">
+                    @csrf
+                    <div class="form-group mx-sm-3 mb-2 col-12 mt-4">
+                        <input type="url"  id="url" name="url" placeholder="Coller un lien à raccourcir" class="input-form-url-shortcut">
+                        <input type="submit" value="raccourcir" class="input-submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 @endsection

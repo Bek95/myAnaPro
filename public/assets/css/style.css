@@ -1,0 +1,44 @@
+.section-url-shortcut {
+    background-image: url("../../images/hello.jpg");
+    background-size: cover;
+    height: 500px;
+}
+
+.form-shortercut {
+    padding: 10px;
+}
+
+.h1-white {
+    color: #edf2f7;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 2.9em;
+}
+
+.h2-white {
+    color: #edf2f7;
+    text-align: center;
+    font-weight: 500;
+}
+
+.input-form-url-shortcut {
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0, 0.4);
+    padding: 17px 30px;
+    border: none;
+    width: 500px;
+    font-size: 1.3em;
+}
+
+.input-submit {
+    cursor: pointer;
+    padding: 17px 30px;
+    font-size: 1.3em;
+    border: none;
+    border-radius: 3px;
+    background: #ee6123;
+    color: #edf2f7;
+    font-weight: 700;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0, 0.4);
+}
