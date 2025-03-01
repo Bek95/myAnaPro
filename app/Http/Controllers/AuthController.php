@@ -20,6 +20,10 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            $user = Auth::user();
+
+
+
             return to_route('url_shortener.index');
         }
 
