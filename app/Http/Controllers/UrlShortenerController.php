@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UrlShortenerRequest;
 use App\Models\UrlShortened;
 use App\Services\UrlShortenerService;
-use Illuminate\Http\Request;
 
 class UrlShortenerController extends Controller
 {
     public function index()
     {
-        $urls = auth()->user()->urls()->get();
+        $urls = auth()->user()->urls()->paginate(2);
         return view('url_shortener.index')->with('urls', $urls);
     }
 
