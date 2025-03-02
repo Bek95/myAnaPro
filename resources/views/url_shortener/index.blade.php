@@ -4,27 +4,43 @@
     <div class="container">
         <h1>liste des shortcut des urls</h1>
 
-       <div>
-           <a href="{{ route('url_shortener.create') }}"><button type="button" class="btn btn-primary">raccourcir une url</button></a>
-       </div>
+        <div>
+            <a href="{{ route('url_shortener.create') }}"><button type="button" class="btn btn-primary">raccourcir une url</button></a>
+        </div>
 
         <div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Urls</th>
-                    <th scope="col">créé par</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                </tbody>
-            </table>
+            @if(isset($urls))
+                @if($urls->isNotEmpty())
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Shortcut Url</th>
+                            <th scope="col">créé par</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($urls as $url)
+                            <tr>
+                                <td><a href="{{ $url->url }}">{{ $url->url_shortcut }}</a></td>
+                                <td>{{ $url->user->name }}</td>
+                                <td>
+                                    <a href="{{ route('url_shortener.edit', $url->id) }}" method="get">
+                                        <button type="button" class="btn btn-success">Editer</button>
+                                    </a>
+                                   {{-- <form action="{{ route('url_shortener.destroy', $url->id) }}" method="post">
+                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                    </form>--}}
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                @endif
+            @else
+                <p>pas de données</p>
+            @endif
+
         </div>
     </div>
 @endsection

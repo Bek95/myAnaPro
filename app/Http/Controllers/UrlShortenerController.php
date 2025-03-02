@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UrlShortenerRequest;
+use App\Models\UrlShortened;
 use App\Services\UrlShortenerService;
+use Illuminate\Http\Request;
 
 class UrlShortenerController extends Controller
 {
     public function index()
     {
-        return view('url_shortener.index');
+        $urls = auth()->user()->urls()->get();
+        return view('url_shortener.index')->with('urls', $urls);
     }
 
     public function create()
@@ -22,31 +25,14 @@ class UrlShortenerController extends Controller
         $data = $request->validated();
 
         if (isset($data['url'])) {
-            //get url from
-            $url = $data['url'];
-            $shortCut = crypt($url, time());
-           // parse url to get url sheme and the host
-            $sheme = parse_url($url, PHP_URL_SCHEME);
-            $host = parse_url($url, PHP_URL_HOST);
-
-            $urlShortcut = $sheme . '://' . $host . '/' . $shortCut;
-
-            $userId = \auth()->user()->id;
-
-            $data = [
-                'url' => $url,
-                'url_shortcut' => $urlShortcut,
-                'user_id' => $userId,
-            ];
+            //ce service ^permet de raccourcir l'url
+           $data = $urlShortenerService->shortCut($data['url']);
 
             try {
-
                 $res = $urlShortenerService->create($data);
-
                 if ($res) {
                     return redirect()->back()->with('success', 'Vous avez raccourci votre url');
                 }
-
             } catch (\Exception $e) {
                 report($e);
 
@@ -55,5 +41,36 @@ class UrlShortenerController extends Controller
         }
         return redirect()->back()->withError('pas d\'url de saisie');
 
+    }
+
+    public function edit(UrlShortened $url)
+    {
+        return view('url_shortener.edit')->with('url', $url);
+    }
+
+    public function update(UrlShortenerRequest $request, UrlShortened $url, UrlShortenerService $urlShortenerService)
+    {
+        $data = $request->validated();
+        // on vérifie si le user a bien cette url
+        $userId = auth()->user()->id;
+        if ($userId !== $url->user_id) {
+            return redirect()->back()->withErrors('vous ne passerez pas !!!');
+        }
+
+        if ($userId === $url->user_id) {
+            try {
+                $shortCutData = $urlShortenerService->shortCut($data['url']);
+                $url->update($shortCutData);
+                $url->save();
+
+                return redirect()->back()->with('success', 'Vous avez mis à jour votre url');
+
+            } catch (\Exception $e) {
+                report($e);
+                return redirect()->back()->withError('une erreur est survenue');
+            }
+        } else {
+            return redirect()->back()->withError('une erreur est survenue');
+        }
     }
 }

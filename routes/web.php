@@ -16,6 +16,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/url/list', [UrlShortenerController::class, 'index'])->name('url_shortener.index');
     Route::get('/url/create', [UrlShortenerController::class, 'create'])->name('url_shortener.create');
     Route::post('/url/store', [UrlShortenerController::class, 'store'])->name('url_shortener.store');
+    Route::get('/url/edit/{url}', [UrlShortenerController::class, 'edit'])->name('url_shortener.edit');
+    Route::post('/url/update/{url}', [UrlShortenerController::class, 'update'])->name('url_shortener.update');
 });
 
 
