@@ -8,10 +8,10 @@
                 <h2 class="h2-white">Largement meilleurs et plus court que les autres.</h2>
             </div>
             <div class="d-flex justify-content-center">
-                <form class="form-inline" action="{{ route('url_shortener.store') }}" method="post">
+                <form class="form-inline" action="{{ route('url_shortener.update', $url->id) }}" method="post">
                     @csrf
                     <div class="form-group mx-sm-3 mb-2 col-12 mt-4">
-                        <input type="url"  id="url" name="url" placeholder="Coller un lien à raccourcir" class="input-form-url-shortcut">
+                        <input type="url"  id="url" name="url" placeholder="Coller un lien à raccourcir" class="input-form-url-shortcut" value="{{ isset($url) ? $url->url : '' }}">
                         <input type="submit" value="raccourcir" class="input-submit">
                     </div>
                 </form>

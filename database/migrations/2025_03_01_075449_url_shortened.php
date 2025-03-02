@@ -15,6 +15,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('url_shortcut');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
             $table->timestamps();
         });
     }

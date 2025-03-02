@@ -123,4 +123,17 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application Var Configuration
+    |--------------------------------------------------------------------------
+    |
+    | this environment variable allows you to choose the number of the pagination
+    |
+    */
+
+    'pagination' => [
+        'urlshortener' => env('APP_PAGINATION_URL', 10),
+    ]
+
 ];

@@ -1,3 +1,4 @@
+{{--
 @extends('master.layout')
 
 @section('content')
@@ -7,7 +8,6 @@
         <div class="mb-3">
             <label for="email_login" class="form-label">Email address</label>
             <input type="email" class="form-control" id="email_login" name="email_login" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
@@ -18,6 +18,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-</div> 
+</div>
 
 @endsection
+--}}
