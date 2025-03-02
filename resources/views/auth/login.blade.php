@@ -3,7 +3,7 @@
 @section('content')
     @include('errors_messages.create_user_errors_message')
     <div class="d-flex justify-content-center mt-5" style="padding: 5%">
-        <form class="col-6" method="post" action="{{ route('auth.login') }}">
+        <form class="col-6" method="post" action="{{ route('login') }}">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>

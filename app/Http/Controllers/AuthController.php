@@ -22,9 +22,7 @@ class AuthController extends Controller
 
             $user = Auth::user();
 
-
-
-            return to_route('url_shortener.index');
+            return view('url_shortener.index');
         }
 
         return back()->withErrors([

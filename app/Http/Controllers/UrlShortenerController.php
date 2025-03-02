@@ -19,6 +19,8 @@ class UrlShortenerController extends Controller
 
     public function store(UrlShortenerRequest $request)
     {
+
+
         $url = $request->validated();
         $shortCut = crypt($url, time());
 
