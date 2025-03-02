@@ -25,7 +25,6 @@ class UrlShortenerController extends Controller
         $data = $request->validated();
 
         if (isset($data['url'])) {
-            //ce service ^permet de raccourcir l'url
            $data = $urlShortenerService->shortCut($data['url']);
 
             try {
@@ -51,9 +50,9 @@ class UrlShortenerController extends Controller
     public function update(UrlShortenerRequest $request, UrlShortened $url, UrlShortenerService $urlShortenerService)
     {
         $data = $request->validated();
-        // on vérifie si le user a bien cette url
         $userId = auth()->user()->id;
 
+        // check if the user can update the url
         if ($userId === $url->user_id) {
             try {
                 $shortCutData = $urlShortenerService->shortCut($data['url']);

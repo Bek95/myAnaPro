@@ -22,7 +22,7 @@
                         <tbody>
                         @foreach($urls as $url)
                             <tr>
-                                <td><a href="{{ $url->url }}" target="_blank" >{{ $url->url_shortcut }}</a><button data-url="{{ $url }}" id="clip_board" class="clip-board ms-5">Copier l'Url</button></td>
+                                <td><a href="{{ $url->url }}" target="_blank" >{{ $url->url_shortcut }}</a><button data-url="{{ $url }}" class="clip-board ms-5">Copier l'Url</button></td>
                                 <td>{{ $url->user->name }}</td>
                                 <td class="d-flex ">
                                     <a href="{{ route('url_shortener.edit', $url->id) }}" method="get">
@@ -52,8 +52,9 @@
 
 @push('scripts')
     <script>
-        $('#clip_board').on('click', function () {
+        $('.clip-board').on('click', function () {
             var url = $(this).data('url');
+            console.log(url);
             navigator.clipboard.writeText(url.url_shortcut);
             alert("le shortcut a été copié: " + url.url_shortcut);
         });

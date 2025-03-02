@@ -38,9 +38,11 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div>
-                                    <a href="{{ route('logout') }}" class="btn btn-primary">Se déconnecter</a>
-                                </div>
+                                @auth()
+                                    <div>
+                                        <a href="{{ route('logout') }}" class="btn btn-primary">Se déconnecter</a>
+                                    </div>
+                                @endauth
                             </div>
                         </nav>
                     </header>

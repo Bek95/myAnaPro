@@ -5,9 +5,10 @@ use App\Http\Controllers\UrlShortenerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
+
 //authentication
-Route::get('/', [AuthController::class, 'index'])->name('index');
-Route::post('/', [AuthController::class, 'login'])->name('login');
+Route::get('/', [AuthController::class, 'index'])->name('login.index');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
