@@ -20,12 +20,19 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-
-            return view('url_shortener.index');
+            return view('url_shortener.create');
         }
 
         return back()->withErrors([
             'error' =>  'Email ou password incorrect'
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }

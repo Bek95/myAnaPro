@@ -38,6 +38,9 @@
                                         </li>
                                     </ul>
                                 </div>
+                                <div>
+                                    <a href="{{ route('logout') }}" class="btn btn-primary">Se déconnecter</a>
+                                </div>
                             </div>
                         </nav>
                     </header>

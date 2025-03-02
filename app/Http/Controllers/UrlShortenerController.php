@@ -53,9 +53,6 @@ class UrlShortenerController extends Controller
         $data = $request->validated();
         // on vérifie si le user a bien cette url
         $userId = auth()->user()->id;
-        if ($userId !== $url->user_id) {
-            return redirect()->back()->withErrors('vous ne passerez pas !!!');
-        }
 
         if ($userId === $url->user_id) {
             try {
@@ -70,7 +67,18 @@ class UrlShortenerController extends Controller
                 return redirect()->back()->withError('une erreur est survenue');
             }
         } else {
-            return redirect()->back()->withError('une erreur est survenue');
+            return redirect()->back()->withErrors('vous ne passerez pas !!!');
+        }
+    }
+
+    public function destroy(UrlShortened $url)
+    {
+        $userId = auth()->user()->id;
+        if ($userId === $url->user_id) {
+            $url->delete();
+            return redirect()->back()->with('success', 'Vous avez supprimer l\'url brutalement sans sommation, ainsi va la vie pour ce test ^^');
+        } else {
+            return redirect()->back()->withErrors('vous ne passerez pas !!!');
         }
     }
 }

@@ -2,15 +2,14 @@
 
 @section('content')
     <div class="container">
-        <h1>liste des shortcut des urls</h1>
+        <h1>liste des URLs raccourcies</h1>
 
         <div>
             <a href="{{ route('url_shortener.create') }}"><button type="button" class="btn btn-primary">raccourcir une url</button></a>
         </div>
 
         <div>
-            @if(isset($urls))
-                @if($urls->isNotEmpty())
+            @if($urls->isNotEmpty())
                     <table class="table">
                         <thead>
                         <tr>
@@ -24,23 +23,24 @@
                             <tr>
                                 <td><a href="{{ $url->url }}">{{ $url->url_shortcut }}</a></td>
                                 <td>{{ $url->user->name }}</td>
-                                <td>
+                                <td class="d-flex ">
                                     <a href="{{ route('url_shortener.edit', $url->id) }}" method="get">
-                                        <button type="button" class="btn btn-success">Editer</button>
+                                        <button type="button" class="btn btn-success me-3">Editer</button>
                                     </a>
-                                   {{-- <form action="{{ route('url_shortener.destroy', $url->id) }}" method="post">
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
-                                    </form>--}}
+                                    <form action="{{ route('url_shortener.destroy', $url->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                @endif
             @else
-                <p>pas de données</p>
-            @endif
-
+                <div class="d-flex justify-content-center">
+                    <h2>Il n'y a pas de données</h2>
+                </div>
+                @endif
         </div>
     </div>
 @endsection
