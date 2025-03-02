@@ -60,3 +60,14 @@
     text-transform: uppercase;
     padding-bottom: 30px;
 }
+
+.clip-board {
+    cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    background: #ee6123;
+    color: #edf2f7;
+    font-weight: 700;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0, 0.4);
+}

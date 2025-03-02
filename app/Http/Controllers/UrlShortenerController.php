@@ -10,7 +10,8 @@ class UrlShortenerController extends Controller
 {
     public function index()
     {
-        $urls = auth()->user()->urls()->paginate(2);
+        // je stocke la variable ds le fichier de config()
+        $urls = auth()->user()->urls()->paginate(config('app.pagination.urlshortener'));
         return view('url_shortener.index')->with('urls', $urls);
     }
 

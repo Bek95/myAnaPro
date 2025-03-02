@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\UserService;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -24,15 +25,25 @@ class UserController extends Controller
         }
 
         $res = $userService->create($dataValidated);
+        $credentials = $request->only('email', 'password');
 
         if ($res) {
-            return to_route('login')->with('success', 'Vous avez créé un compte, vous pouvez vous connecter');
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+
+                return view('url_shortener.index')->with('success', 'Vous avez créé un compte, vous pouvez vous connecter');
+            }
         } else {
             return redirect()->back()->withError('tu ne pourras couper d\'url');
         }
 
     }
 
+    /**
+     * @param string $password
+     * @param string $confirmPassword
+     * @return bool
+     */
     private function arePasswordsMatching(string $password, string $confirmPassword): bool
     {
         return $password === $confirmPassword;
