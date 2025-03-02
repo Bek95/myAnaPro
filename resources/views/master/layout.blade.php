@@ -31,13 +31,17 @@
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                            <a class="nav-link" aria-current="page" href="{{ route('url_shortener.index') }}">Urls Raccourcies</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" aria-current="page" href="{{ route('url_shortener.create') }}">Raccourcir une Url</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </nav>
                     </header>
+                    @include('messages.message')
                         @yield('content')
                     <footer class="d-flex justify-content-center p-5">
                         <div>

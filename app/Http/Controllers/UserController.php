@@ -26,9 +26,9 @@ class UserController extends Controller
         $res = $userService->create($dataValidated);
 
         if ($res) {
-            return view('url_shortener.index');
+            return to_route('login')->with('success', 'Vous avez créé un compte, vous pouvez vous connecter');
         } else {
-            return redirect()->back()->withError('tu ne pourras de couper d\'url');
+            return redirect()->back()->withError('tu ne pourras couper d\'url');
         }
 
     }

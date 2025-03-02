@@ -1,7 +1,6 @@
 @extends('master.layout',['title' => 'Login'])
 
 @section('content')
-    @include('errors_messages.create_user_errors_message')
     <div class="d-flex justify-content-center mt-5" style="padding: 5%">
         <form class="col-6" method="post" action="{{ route('login') }}">
             @csrf

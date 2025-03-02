@@ -20,13 +20,12 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            $user = Auth::user();
 
             return view('url_shortener.index');
         }
 
         return back()->withErrors([
-            'error' =>  'These credentials do not match our records.'
+            'error' =>  'Email ou password incorrect'
         ]);
     }
 }
